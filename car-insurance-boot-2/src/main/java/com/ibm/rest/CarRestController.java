@@ -48,8 +48,8 @@ public class CarRestController {
 	}
 	
 	@GetMapping(value = "/car/quote")
-	public double getQuotation(@RequestParam String regNo , @RequestParam String coverageType , @RequestParam int duration) {
-		return service.getQuotation(regNo,coverageType,duration);
+	public double getQuotation(@RequestParam String regNo , @RequestParam String coverageType) {
+		return service.getQuotation(regNo,coverageType);
 	}
 
 

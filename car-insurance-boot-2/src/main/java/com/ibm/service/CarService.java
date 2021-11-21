@@ -13,7 +13,7 @@ public interface CarService {
 	
 		List<Car> fetchAll();
 		
-		double getQuotation(String regNo , String coverageType,int duration);
+		double getQuotation(String regNo , String coverageType);
 		
 		void deleteCarById(int id);
 

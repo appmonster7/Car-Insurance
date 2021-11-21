@@ -40,7 +40,7 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public double getQuotation(String regNo , String coverageType,int duration) {
+	public double getQuotation(String regNo , String coverageType) {
 	
 		Car c = repo.findByRegNo(regNo);
 		double price = c.getPrice();
@@ -64,7 +64,7 @@ public class CarServiceImpl implements CarService {
 			price -= price*tenure*50/100;
 				}	
 	}
-		return price*duration;
+		return price;
 	}
 
 	@Override
