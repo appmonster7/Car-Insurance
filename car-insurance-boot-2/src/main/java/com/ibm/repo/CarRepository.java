@@ -8,6 +8,7 @@ import com.ibm.entity.Car;
 
 public interface CarRepository extends JpaRepository<Car, Integer> {
 	
-	Car findByRegNo(int r);
+	Car findByRegNo(String r);
+	
 	List<Car> findAllByCustomer(int c);
 }

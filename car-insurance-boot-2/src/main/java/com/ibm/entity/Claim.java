@@ -9,17 +9,20 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "claim")
+@Table(name = "claims")
 public class Claim {
 	@Id
 	private int claim_id;
 	@Column(length = 20)
 	private String status;
-	@JoinColumn(name = "cust_id")
-	private Customer customer;
-
-	@JoinColumn(name = "reg_no")
-	private Car car;
+	
+//	@OneToOne
+//	@JoinColumn(name = "cust_id")
+//	private Customer customer;
+//
+//	@OneToOne
+//	@JoinColumn(name = "reg_no")
+//	private Car car;
 
 	@OneToOne
 	@JoinColumn(name = "ins_id")

@@ -10,8 +10,6 @@ public interface CustomerService {
 	
 	Customer fetchById(int customer_id);
 	
-	List<Customer> fetchByName(String name);
-	
 	List<Customer> fetchAll();
 
 }

@@ -3,28 +3,34 @@ package com.ibm.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ibm.entity.Car;
+import com.ibm.entity.Customer;
+import com.ibm.entity.Insurance;
 import com.ibm.repo.CarRepository;
 
+
+@Service
 public class CarServiceImpl implements CarService {
 
 	@Autowired
 	private CarRepository repo;
 	
+	@Autowired
+	private CustomerService cservice;
+	
 	@Override
-	public void save(Car c) {
+	public int add(Car c, int customerId) {
+		Customer c1 = cservice.fetchById(customerId);
+		c.setCustomer(c1);
 		repo.save(c);
+		return c.getCarId();
 	}
 
 	@Override
-	public Car fetchById(int car_id) {
-		return repo.findById(car_id).get();
-	}
-
-	@Override
-	public Car fetchByRegNo(int regNo) {
-		return repo.findByRegNo(regNo);
+	public Car fetchById(int carId) {
+		return repo.findById(carId).get();
 	}
 
 	@Override
@@ -34,9 +40,36 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public List<Car> getByCustId(int c) {
+	public double getQuotation(String regNo , String coverageType,int duration) {
+	
+		Car c = repo.findByRegNo(regNo);
+		double price = c.getPrice();
+		int currntYr = 2021;
+		int tenure = currntYr-c.getManufctYear();		
 		
-		return repo.findAllByCustomer(c);
+		if(coverageType.equals("thirdparty")) {
+				if(tenure <= 5) {
+			price -= price*tenure*30/100;
+			
+				}
+			else if(tenure > 5) {
+				price -= price*tenure*60/100;	
+			}
+		}
+		else {
+			if(tenure <= 5) {
+				price -= price*tenure*20/100;
+					}
+				else if(tenure > 5) {
+			price -= price*tenure*50/100;
+				}	
+	}
+		return price*duration;
+	}
+
+	@Override
+	public void deleteCarById(int id) {
+		repo.deleteById(id);
 	}
 
 }

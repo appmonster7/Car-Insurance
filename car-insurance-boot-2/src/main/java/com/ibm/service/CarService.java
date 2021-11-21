@@ -4,16 +4,17 @@ import java.util.List;
 
 import com.ibm.entity.Car;
 
+
 public interface CarService {
 	
-		void save(Car c);
+		int add(Car c, int customerId);
 		
 		Car fetchById(int c);
-		
-		Car fetchByRegNo(int c);
-		
+	
 		List<Car> fetchAll();
 		
-		List<Car> getByCustId(int c);
+		double getQuotation(String regNo , String coverageType,int duration);
+		
+		void deleteCarById(int id);
 
 }

@@ -11,90 +11,134 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "insurance")
 public class Insurance {
 	@Id
 	@GeneratedValue
-	private int ins_id;
+	private int insId;
 	@Column
-	private int insurance_no;
+	private int insuranceNo;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column
-	private LocalDate date_issued;
+	private LocalDate dateIssued;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column
-	private LocalDate expiry_date;
+	private LocalDate expiryDate;
 	@Column(length = 20)
 	private int duration;
 	@Column(length = 20)
 	private double amount;
 	@Column(length = 20)
-	private String coverage_type;
+	private String coverageType;
 	@Column(length = 20)
-	private double prev_amnt_insured;
+	private double prevAmntInsured;
 	
-	public int getIns_id() {
-		return ins_id;
+	
+
+	@OneToOne
+	@JoinColumn(name = "carId")
+	private Car car;
+
+
+
+	public int getInsId() {
+		return insId;
 	}
 
-	public void setIns_id(int ins_id) {
-		this.ins_id = ins_id;
+
+
+	public void setInsId(int insId) {
+		this.insId = insId;
 	}
 
-	public int getInsurance_no() {
-		return insurance_no;
+
+
+	public int getInsuranceNo() {
+		return insuranceNo;
 	}
 
-	public void setInsurance_no(int insurance_no) {
-		this.insurance_no = insurance_no;
+
+
+	public void setInsuranceNo(int insuranceNo) {
+		this.insuranceNo = insuranceNo;
 	}
 
-	public LocalDate getDate_issued() {
-		return date_issued;
+
+
+	public LocalDate getDateIssued() {
+		return dateIssued;
 	}
 
-	public void setDate_issued(LocalDate date_issued) {
-		this.date_issued = date_issued;
+
+
+	public void setDateIssued(LocalDate dateIssued) {
+		this.dateIssued = dateIssued;
 	}
 
-	public LocalDate getExpiry_date() {
-		return expiry_date;
+
+
+	public LocalDate getExpiryDate() {
+		return expiryDate;
 	}
 
-	public void setExpiry_date(LocalDate expiry_date) {
-		this.expiry_date = expiry_date;
+
+
+	public void setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
 	}
+
+
 
 	public int getDuration() {
 		return duration;
 	}
 
+
+
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+
+
 
 	public double getAmount() {
 		return amount;
 	}
 
+
+
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
-	public String getCoverage_type() {
-		return coverage_type;
+
+
+	public String getCoverageType() {
+		return coverageType;
 	}
 
-	public void setCoverage_type(String coverage_type) {
-		this.coverage_type = coverage_type;
+
+
+	public void setCoverageType(String coverageType) {
+		this.coverageType = coverageType;
 	}
 
-	public double getPrev_amnt_insured() {
-		return prev_amnt_insured;
+
+
+	public double getPrevAmntInsured() {
+		return prevAmntInsured;
 	}
 
-	public void setPrev_amnt_insured(double prev_amnt_insured) {
-		this.prev_amnt_insured = prev_amnt_insured;
+
+
+	public void setPrevAmntInsured(double prevAmntInsured) {
+		this.prevAmntInsured = prevAmntInsured;
 	}
+
+
 
 	public Car getCar() {
 		return car;
@@ -103,9 +147,7 @@ public class Insurance {
 	public void setCar(Car car) {
 		this.car = car;
 	}
-
-	@OneToOne
-	@JoinColumn(name = "car_id")
-	private Car car;
+	
+	
 	
 }

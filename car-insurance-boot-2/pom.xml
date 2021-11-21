@@ -14,7 +14,7 @@
 	<name>car-insurance-boot-2</name>
 	<description>Car Insurance project for Spring Boot</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

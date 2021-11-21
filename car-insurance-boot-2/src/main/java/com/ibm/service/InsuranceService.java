@@ -1,9 +1,13 @@
 package com.ibm.service;
 
+
 import com.ibm.entity.Insurance;
 
 public interface InsuranceService {
-	void save(Insurance i);
+	int save(Insurance i, int carId);
 	
-	Insurance fetchByCoverageType(String coverage_type);
+	
+	void deleteInsById(int id);
+	
+//	Insurance fetchById(int insId);
 }
