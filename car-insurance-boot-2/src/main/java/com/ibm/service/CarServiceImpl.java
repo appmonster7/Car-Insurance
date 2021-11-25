@@ -10,16 +10,15 @@ import com.ibm.entity.Customer;
 import com.ibm.entity.Insurance;
 import com.ibm.repo.CarRepository;
 
-
 @Service
 public class CarServiceImpl implements CarService {
 
 	@Autowired
 	private CarRepository repo;
-	
+
 	@Autowired
 	private CustomerService cservice;
-	
+
 	@Override
 	public int add(Car c, int customerId) {
 		Customer c1 = cservice.fetchById(customerId);
@@ -35,36 +34,36 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public List<Car> fetchAll() {
-		
+
 		return repo.findAll();
 	}
 
 	@Override
-	public double getQuotation(String regNo , String coverageType) {
-	
+	public double getQuotation(String regNo, String coverageType) {
+
 		Car c = repo.findByRegNo(regNo);
 		double price = c.getPrice();
+		double premium = price * 2 / 100;
+		double idv = 0;
 		int currntYr = 2021;
-		int tenure = currntYr-c.getManufctYear();		
-		
-		if(coverageType.equals("thirdparty")) {
-				if(tenure <= 5) {
-			price -= price*tenure*30/100;
-			
-				}
-			else if(tenure > 5) {
-				price -= price*tenure*60/100;	
+		int tenure = currntYr - c.getManufctYear();
+
+		if (coverageType.equals("thirdparty")) {
+			if (tenure <= 5) {
+				idv = price - price * tenure * 20 / 100;
+
+			} else if (tenure > 5) {
+				idv = price - price * tenure * 30 / 100;
+
+			}
+		} else {
+			if (tenure <= 5) {
+				idv = price - price * tenure * 10 / 100;
+			} else if (tenure > 5) {
+				idv = price - price * tenure * 20 / 100;
 			}
 		}
-		else {
-			if(tenure <= 5) {
-				price -= price*tenure*20/100;
-					}
-				else if(tenure > 5) {
-			price -= price*tenure*50/100;
-				}	
-	}
-		return price;
+		return idv * (premium / price);
 	}
 
 	@Override
