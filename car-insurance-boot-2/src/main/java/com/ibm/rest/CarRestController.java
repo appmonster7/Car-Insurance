@@ -22,15 +22,15 @@ public class CarRestController {
 	@Autowired
 	private CarService service;
 	
-	@PostMapping(value="/car/{userId}" , consumes = "application/json")
+	@PostMapping(value="/car/{userId}" , produces = "application/text")
 	public String addCar(@RequestBody Car car, @PathVariable int userId) {
-		service.add(car, userId);
-		return "car added";
+		return service.add(car, userId);
+		
 	}
 	
-	@GetMapping(value="/car/{userid}" , produces = "application/json")
-	public Car getCar(@PathVariable int id) {
-		Car c = service.fetchById(id);
+	@GetMapping(value="/car/{carId}" , produces = "application/json")
+	public Car getCar(@PathVariable int carId) {
+		Car c = service.fetchById(carId);
 		return c;
 	}
 	
@@ -47,7 +47,7 @@ public class CarRestController {
 		return "Car deleted";
 	}
 	
-	@GetMapping(value = "/car/quote")
+	@GetMapping(value = "/car/quote", produces = "application/json")
 	public double getQuotation(@RequestParam String regNo , @RequestParam String coverageType) {
 		return service.getQuotation(regNo,coverageType);
 	}

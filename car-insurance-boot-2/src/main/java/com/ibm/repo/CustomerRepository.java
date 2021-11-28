@@ -8,5 +8,5 @@ import com.ibm.entity.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
-	List<Customer> findByName(String name);
+	
 }

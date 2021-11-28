@@ -2,9 +2,11 @@ package com.ibm.service;
 
 import org.springframework.stereotype.Service;
 
+import com.ibm.entity.Customer;
+
 
 public interface LoginService {
 	
-	String Authenticate(String email,String password);
+	Customer Authenticate(String email,String password);
 
 }

@@ -1,7 +1,9 @@
 package com.ibm.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -10,6 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "cars")
@@ -36,11 +39,11 @@ public class Car {
 	
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="customer_id")
+	@JoinColumn(name="customerId")
 	private Customer customer;
 	
-	
-	@OneToOne
+	@JsonManagedReference
+	@OneToOne(mappedBy = "car" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ins_id")
 	private Insurance insurance;
 

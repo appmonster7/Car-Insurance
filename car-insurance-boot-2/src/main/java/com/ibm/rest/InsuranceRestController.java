@@ -21,9 +21,9 @@ public class InsuranceRestController {
 	private InsuranceService service;
 	
 	@PostMapping(value = "/insurance/{carId}" , consumes = "application/json")
-	public String addInsurance(@RequestBody Insurance insurance , @PathVariable int carId) {
+	public void addInsurance(@RequestBody Insurance insurance , @PathVariable int carId) {
 		service.save(insurance,carId);
-		return "Insurance added";
+		
 	}
 	
 //	@GetMapping(value = "/insurance/{id}" , produces = "application/json")

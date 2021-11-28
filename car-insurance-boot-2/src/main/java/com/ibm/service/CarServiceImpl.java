@@ -20,11 +20,20 @@ public class CarServiceImpl implements CarService {
 	private CustomerService cservice;
 
 	@Override
-	public int add(Car c, int customerId) {
+	public String add(Car c, int customerId) {
 		Customer c1 = cservice.fetchById(customerId);
+		List<Car> car = repo.findAll();
+		if (!car.isEmpty()) {
+			for (Car c2 : car) {
+				if (c2.getRegNo().equals(c.getRegNo())) {
+					return "Car already exists";
+				} 
+			}
+		}
 		c.setCustomer(c1);
 		repo.save(c);
-		return c.getCarId();
+		return "Car added";
+
 	}
 
 	@Override
@@ -50,7 +59,7 @@ public class CarServiceImpl implements CarService {
 
 		if (coverageType.equals("thirdparty")) {
 			if (tenure <= 5) {
-				idv = price - price * tenure * 20 / 100;
+				idv = price - price * tenure * 15 / 100;
 
 			} else if (tenure > 5) {
 				idv = price - price * tenure * 30 / 100;

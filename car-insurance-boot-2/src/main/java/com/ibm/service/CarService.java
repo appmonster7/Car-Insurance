@@ -7,7 +7,7 @@ import com.ibm.entity.Car;
 
 public interface CarService {
 	
-		int add(Car c, int customerId);
+	   String add(Car c, int customerId);
 		
 		Car fetchById(int c);
 	

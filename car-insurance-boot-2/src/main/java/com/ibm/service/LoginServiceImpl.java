@@ -15,16 +15,16 @@ public class LoginServiceImpl implements LoginService {
 	private CustomerService service;
 	
 	@Override
-	public String Authenticate(String email, String password) {
+	public Customer Authenticate(String email, String password) {
 		List<Customer> list = service.fetchAll();
 		for (Customer customer : list) {
 			if(customer.getEmail().equals(email)) {
 				if(customer.getPassword().equals(password)) {
-					return "Authenticated";
+					return customer;
 				}
 			}
 		}
-		return "Invalid Credentials" ;
+		return null;
 	}
 
 }

@@ -1,7 +1,9 @@
 package com.ibm.entity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -20,13 +23,12 @@ public class Insurance {
 	@GeneratedValue
 	private int insId;
 	@Column
-	private int insuranceNo;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private double insuranceNo;
+
 	@Column
-	private LocalDate dateIssued;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private String dateIssued;
 	@Column
-	private LocalDate expiryDate;
+	private String expiryDate;
 	@Column(length = 20)
 	private int duration;
 	@Column(length = 20)
@@ -35,110 +37,74 @@ public class Insurance {
 	private String coverageType;
 	@Column(length = 20)
 	private double prevAmntInsured;
-	
-	
-
+	@JsonBackReference
 	@OneToOne
 	@JoinColumn(name = "carId")
 	private Car car;
-
-
 
 	public int getInsId() {
 		return insId;
 	}
 
-
-
 	public void setInsId(int insId) {
 		this.insId = insId;
 	}
 
-
-
-	public int getInsuranceNo() {
+	public double getInsuranceNo() {
 		return insuranceNo;
 	}
 
-
-
-	public void setInsuranceNo(int insuranceNo) {
+	public void setInsuranceNo(double insuranceNo) {
 		this.insuranceNo = insuranceNo;
 	}
 
-
-
-	public LocalDate getDateIssued() {
+	public String getDateIssued() {
 		return dateIssued;
 	}
 
-
-
-	public void setDateIssued(LocalDate dateIssued) {
+	public void setDateIssued(String dateIssued) {
 		this.dateIssued = dateIssued;
 	}
 
-
-
-	public LocalDate getExpiryDate() {
+	public String getExpiryDate() {
 		return expiryDate;
 	}
 
-
-
-	public void setExpiryDate(LocalDate expiryDate) {
+	public void setExpiryDate(String expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-
-
 
 	public int getDuration() {
 		return duration;
 	}
 
-
-
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-
-
 
 	public double getAmount() {
 		return amount;
 	}
 
-
-
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-
-
 
 	public String getCoverageType() {
 		return coverageType;
 	}
 
-
-
 	public void setCoverageType(String coverageType) {
 		this.coverageType = coverageType;
 	}
-
-
 
 	public double getPrevAmntInsured() {
 		return prevAmntInsured;
 	}
 
-
-
 	public void setPrevAmntInsured(double prevAmntInsured) {
 		this.prevAmntInsured = prevAmntInsured;
 	}
-
-
 
 	public Car getCar() {
 		return car;
@@ -147,7 +113,5 @@ public class Insurance {
 	public void setCar(Car car) {
 		this.car = car;
 	}
-	
-	
-	
+
 }

@@ -22,9 +22,9 @@ public class CustomerRestController {
 	private CustomerService service;
 	
 	@PostMapping(value = "/customer", consumes ="application/json")
-	public String addCustomer(@RequestBody Customer customer) {
+	public void addCustomer(@RequestBody Customer customer) {
 		service.save(customer);
-		return "customer added";
+	
 	}
 	
 	@GetMapping(value = "/customer/{customerid}", produces = "application/json")

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ibm.entity.Customer;
 import com.ibm.service.LoginService;
 
 @CrossOrigin
@@ -15,7 +16,7 @@ public class LoginRestController {
 	@Autowired
 	private LoginService login;
 	@GetMapping(value = "/login")
-	public String authenticateUser(@RequestParam String username , @RequestParam String password) {
+	public Customer authenticateUser(@RequestParam String username , @RequestParam String password) {
 		return login.Authenticate(username, password);
 	}
 
