@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.ibm.entity.Car;
 import com.ibm.entity.Customer;
-import com.ibm.entity.Insurance;
 import com.ibm.repo.CarRepository;
 
 @Service
@@ -58,18 +57,24 @@ public class CarServiceImpl implements CarService {
 		int tenure = currntYr - c.getManufctYear();
 
 		if (coverageType.equals("thirdparty")) {
-			if (tenure <= 5) {
-				idv = price - price * tenure * 15 / 100;
+			if (tenure <= 2) {
+				idv = price - price * 60 / 100;
 
-			} else if (tenure > 5) {
-				idv = price - price * tenure * 30 / 100;
+			} else if (tenure > 2 && tenure <= 4  ) {
+				idv = price - price * 35 / 100;
 
+			} else if(tenure > 4 && tenure <=6 ){
+				idv = price - price * 20 / 100;
 			}
 		} else {
-			if (tenure <= 5) {
-				idv = price - price * tenure * 10 / 100;
-			} else if (tenure > 5) {
-				idv = price - price * tenure * 20 / 100;
+			if (tenure <= 2) {
+				idv = price - price * 40 / 100;
+
+			} else if (tenure > 2 && tenure <= 4  ) {
+				idv = price - price * 25 / 100;
+
+			} else if(tenure > 4 && tenure <=6 ){
+				idv = price - price * 10 / 100;
 			}
 		}
 		return idv * (premium / price);

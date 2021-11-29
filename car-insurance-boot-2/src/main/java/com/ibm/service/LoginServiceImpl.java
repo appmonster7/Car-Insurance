@@ -7,19 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.ibm.entity.Customer;
 
-
 @Service
 public class LoginServiceImpl implements LoginService {
-	
+
 	@Autowired
 	private CustomerService service;
-	
+
 	@Override
 	public Customer Authenticate(String email, String password) {
 		List<Customer> list = service.fetchAll();
 		for (Customer customer : list) {
-			if(customer.getEmail().equals(email)) {
-				if(customer.getPassword().equals(password)) {
+			if (customer.getEmail().equals(email)) {
+				if (customer.getPassword().equals(password)) {
 					return customer;
 				}
 			}
