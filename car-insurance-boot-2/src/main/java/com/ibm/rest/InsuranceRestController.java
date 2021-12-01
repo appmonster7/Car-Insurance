@@ -1,3 +1,9 @@
+/**
+ * This Rest Controller class is handles requests made by the client.
+ * @author Kosuru.Venkata.Sravani  
+ * @version  1.8.0_311
+ **/
+
 package com.ibm.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +21,23 @@ import com.ibm.service.InsuranceService;
 @CrossOrigin
 @RestController
 public class InsuranceRestController {
-	
+
 	@Autowired
 	private InsuranceService service;
-	
-	@PostMapping(value = "/insurance/{carId}" , produces = "application/text")
-	public String addInsurance(@RequestBody Insurance insurance , @PathVariable int carId) {
-		return service.save(insurance,carId);
-		
+
+	@PostMapping(value = "/insurance/{carId}", produces = "application/text")
+	public String addInsurance(@RequestBody Insurance insurance, @PathVariable int carId) {
+		return service.save(insurance, carId);
+
 	}
-	
+
 //	@GetMapping(value = "/insurance/{id}" , produces = "application/json")
 //	public Insurance getById(@PathVariable int id) {
 //		Insurance i = service.fetchById(id);
 //		return i;
 //		
 //	}
-	
+
 	@DeleteMapping(value = "/deleteins/{id}")
 	public String delInsurance(@PathVariable int id) {
 		service.deleteInsById(id);

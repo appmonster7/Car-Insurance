@@ -1,3 +1,9 @@
+/**
+ * This service Implementation class implements all the methods and functionalities of the Car Service interface.
+ * @author Kosuru.Venkata.Sravani, P.M.Thanusree   
+ * @version  1.8.0_311
+ **/
+
 package com.ibm.service;
 
 import java.util.List;
@@ -26,7 +32,7 @@ public class CarServiceImpl implements CarService {
 			for (Car c2 : car) {
 				if (c2.getRegNo().equals(c.getRegNo())) {
 					return "Car already exists";
-				} 
+				}
 			}
 		}
 		c.setCustomer(c1);
@@ -60,20 +66,20 @@ public class CarServiceImpl implements CarService {
 			if (tenure <= 2) {
 				idv = price - price * 60 / 100;
 
-			} else if (tenure > 2 && tenure <= 4  ) {
+			} else if (tenure > 2 && tenure <= 4) {
 				idv = price - price * 35 / 100;
 
-			} else if(tenure > 4 && tenure <=6 ){
+			} else if (tenure > 4 && tenure <= 6) {
 				idv = price - price * 20 / 100;
 			}
 		} else {
 			if (tenure <= 2) {
 				idv = price - price * 40 / 100;
 
-			} else if (tenure > 2 && tenure <= 4  ) {
+			} else if (tenure > 2 && tenure <= 4) {
 				idv = price - price * 25 / 100;
 
-			} else if(tenure > 4 && tenure <=6 ){
+			} else if (tenure > 4 && tenure <= 6) {
 				idv = price - price * 10 / 100;
 			}
 		}

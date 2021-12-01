@@ -1,5 +1,11 @@
-package com.ibm.entity;
+/**
+ * This class describes an entity of an Insurance. A table is created  and columns are generated and column names are assigned.
+ * Getters and setters are generated in this class.
+ * @author Kosuru.Venkata.Sravani , B.Soumya
+ * @version  1.8.0_311
+**/
 
+package com.ibm.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +16,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 
 @Entity
 @Table(name = "insurance")

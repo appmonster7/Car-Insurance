@@ -1,3 +1,10 @@
+/**
+ * This class describes an entity of a Car. A table is created  and columns are generated with assigned names.
+ * Getters and setters are generated in this class.
+ * @author Kosuru.Venkata.Sravani, B.Soumya
+ * @version  1.8.0_311
+ **/
+
 package com.ibm.entity;
 
 import javax.persistence.CascadeType;
@@ -20,30 +27,29 @@ public class Car {
 	@Id
 	@GeneratedValue
 	private int carId;
-	
-	@Column(length = 20 , name = "reg_no")
+
+	@Column(length = 20, name = "reg_no")
 	private String regNo;
-	
-	@Column(length = 20 , name = "model_name")
+
+	@Column(length = 20, name = "model_name")
 	private String modelName;
 
-	
 	@Column(length = 20, name = "manufct_yr")
 	private int manufctYear;
-	
-	@Column(length = 20,name = "purch_yr")
+
+	@Column(length = 20, name = "purch_yr")
 	private int purchYear;
-	
-	@Column(length = 20 , name = "price")
+
+	@Column(length = 20, name = "price")
 	private double price;
-	
+
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="customerId")
+	@JoinColumn(name = "customerId")
 	private Customer customer;
-	
+
 	@JsonManagedReference
-	@OneToOne(mappedBy = "car" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "car", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ins_id")
 	private Insurance insurance;
 
@@ -63,7 +69,6 @@ public class Car {
 		this.modelName = modelName;
 	}
 
-	
 	public int getManufctYear() {
 		return manufctYear;
 	}
@@ -103,7 +108,6 @@ public class Car {
 	public void setInsurance(Insurance insurance) {
 		this.insurance = insurance;
 	}
-	
 
 	public String getRegNo() {
 		return regNo;
@@ -119,8 +123,5 @@ public class Car {
 				+ ", purchYear=" + purchYear + ", price=" + price + ", customer=" + customer + ", insurance="
 				+ insurance + "]";
 	}
-
-
-
 
 }

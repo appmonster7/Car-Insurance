@@ -1,3 +1,10 @@
+/**
+ * This class describes an entity of a Customer. A table is created and column names are assigned.
+ * Getters and setters are generated in this class.
+ * @author Kosuru.Venkata.Sravani,P.Sindhu 
+ * @version  1.8.0_311
+ **/
+
 package com.ibm.entity;
 
 import java.util.List;
@@ -22,7 +29,7 @@ public class Customer {
 	@Column(length = 20)
 	private String name;
 	@Column(length = 20)
-	private double phoneNumber;
+	private long phoneNumber;
 	@Column(length = 20)
 	private String city;
 	@Column(length = 20)
@@ -31,7 +38,7 @@ public class Customer {
 	private String password;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "customer" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Car> car;
 
 	public int getCustomerId() {
@@ -50,11 +57,11 @@ public class Customer {
 		this.name = name;
 	}
 
-	public double getPhoneNumber() {
+	public long getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(double phoneNumber) {
+	public void setPhoneNumber(long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -89,7 +96,5 @@ public class Customer {
 	public void setCar(List<Car> car) {
 		this.car = car;
 	}
-	
-	
-	
+
 }

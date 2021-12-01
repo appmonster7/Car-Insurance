@@ -1,3 +1,10 @@
+/**
+ * This Rest Controller class is handles requests made by the client.
+ * @author Kosuru.Venkata.Sravani
+ * @version  1.8.0_311
+ **/
+
+
 package com.ibm.rest;
 
 import java.util.List;
@@ -41,10 +48,10 @@ public class CarRestController {
 		
 	}
 	
-	@DeleteMapping(value = "/deletecar/{id}" )
-	public String delCar(@PathVariable int id) {
+	@DeleteMapping(value = "/car/delete/{id}" )
+	public void  delCar(@PathVariable int id) {
 		service.deleteCarById(id);
-		return "Car deleted";
+		
 	}
 	
 	@GetMapping(value = "/car/quote", produces = "application/json")

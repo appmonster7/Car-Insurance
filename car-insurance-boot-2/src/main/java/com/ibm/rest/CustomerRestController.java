@@ -1,3 +1,9 @@
+/**
+ * This Rest Controller class is handles requests made by the client.
+ * @author Kosuru.Venkata.Sravani  
+ * @version  1.8.0_311
+ **/
+
 package com.ibm.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +21,16 @@ import com.ibm.service.CustomerService;
 @CrossOrigin
 @RestController
 public class CustomerRestController {
-	 
+
 	@Autowired
 	private CustomerService service;
-	
-	@PostMapping(value = "/customer", consumes ="application/json")
+
+	@PostMapping(value = "/customer", consumes = "application/json")
 	public void addCustomer(@RequestBody Customer customer) {
 		service.save(customer);
-	
+
 	}
-	
+
 	@GetMapping(value = "/customer/{customerid}", produces = "application/json")
 	public Customer getCustomer(@PathVariable int customerid) {
 		Customer c = service.fetchById(customerid);
